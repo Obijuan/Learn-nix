@@ -23,8 +23,10 @@ stdenv.mkDerivation {
   #-- No tiene make install. La fase instalacion la implementamos
   #-- a pelo, copiando el ejecutable en el directorio de salida
   installPhase = ''
+    runHook preInstall
     mkdir -p $out/bin
     cp icat $out/bin
+    runHook postInstall
   '';
 
 }
